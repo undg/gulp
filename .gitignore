@@ -1,0 +1,13 @@
+# vim
+*~
+*.swp
+*.swo
+# Session.vim
+*.vim
+# YCM
+.tern-project
+
+# node
+dist/
+node_modules/
+package-lock.json
