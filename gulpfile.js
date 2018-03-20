@@ -31,15 +31,15 @@ var dist = {
 }
 
 var src = {
-  watch: {
-    js: "src/js/**/*js"
+  track: {
+    js: "src/js/**/*js",
+    sass: "src/css/**/*.sass"
   },
   js: "src/js/1-include.js" ,
   css: "src/css/1-include.sass",
-  sass: "src/css/**/*.sass",
   // php: "src/**/*.php",
   html: "src/**/*.html",
-  // font: "src/font/**/*.ttf",
+  font: "src/font/**/*",
   // test: [
   //   "test/*Test.js"
   // ],
@@ -49,7 +49,8 @@ var src = {
 gulp.task('browser-sync', function() {
   bsync.init({
     server: {
-        basedir: "./"
+      baseDir: dist.html,
+      index: "index.html"
     },
     // proxy: "localhost:80",
     browser: "chromium",
@@ -95,6 +96,7 @@ gulp.task('javascript', function() {
 gulp.task('html', function() {
   return gulp.src(src.html)
     .pipe(gulp.dest(dist.html))
+    .pipe(bsync.stream())
 })
 
 // IMG
@@ -103,11 +105,11 @@ gulp.task('img', function() {
     .pipe(gulp.dest(dist.img))
 })
 
-// // FONT
-// gulp.task('font', function() {
-//   return gulp.src(src.font)
-//     .pipe(gulp.dest(dist.font))
-// })
+// FONT
+gulp.task('font', function() {
+  return gulp.src(src.font)
+    .pipe(gulp.dest(dist.font))
+})
 
 // // MOCHA TEST
 // gulp.task('testMocha', function(){
@@ -122,14 +124,14 @@ gulp.task('img', function() {
 
 // WATCH
 gulp.task('watch', ['browser-sync'], function() {
-  gulp.watch(src.sass, ['style'])
-  gulp.watch(src.watch.js, ['javascript']).on('change', bsync.reload)
+  gulp.watch(src.track.sass, ['style'])
+  gulp.watch(src.track.js, ['javascript']).on('change', bsync.reload)
   gulp.watch(src.html, ['html'])
   gulp.watch(src.img, ['img'])
   // gulp.watch(src.test, ['testMocha'])
   // gulp.watch(src.php, ['php']).on('change', bsync.reload)
-  // gulp.watch(src.font, ['font'])
+  gulp.watch(src.font, ['font'])
 })
 // DEFAULT
-gulp.task('default', ['watch', 'style', 'javascript', 'html', 'img'])
+gulp.task('default', ['watch', 'style', 'javascript', 'html', 'img', 'font'])
 
