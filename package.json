@@ -1,26 +1,80 @@
 {
-  "name": "keepthinkingtest",
-  "version": "1.0.0",
-  "description": "front end skill test",
-  "main": "gulpfile.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Bartek Laskowski",
-  "license": "ISC",
-  "dependencies": {
-    "browser-sync": "^2.23.6",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^4.1.0",
-    "gulp-clean-css": "^3.9.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-include": "^2.3.1",
-    "gulp-order": "^1.1.1",
-    "gulp-plumber": "^1.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-sourcemaps": "^2.6.4",
-    "gulp-uglify": "^3.0.0",
-    "gulp-watch": "^5.0.0"
-  }
+    "name": "b.laskowski",
+    "version": "1.0.0",
+    "description": "gulp",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:und3rdg/gulp"
+    },
+    "main": "gulpfile.js",
+    "scripts": {
+        "start": "gulp bs",
+        "bs": "gulp bs",
+        "dev": "gulp watch",
+        "watch": "gulp watch",
+        "prod": "gulp",
+        "test": "mocha -w --require @babel/register -R nyan",
+        "test:once": "mocha --require @babel/register -R nyan"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run prod && npm run test:once"
+        }
+    },
+    "author": "Bartek Laskowski",
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/core": "^7.0.0",
+        "@babel/plugin-proposal-class-properties": "^7.0.0",
+        "@babel/preset-env": "^7.0.0",
+        "@babel/preset-react": "^7.0.0",
+        "@babel/register": "^7.0.0",
+        "autoprefixer": "^7.0.0",
+        "babel-core": "^6.0.0",
+        "babel-preset-env": "^1.0.0",
+        "babel-preset-es2015": "^6.0.0",
+        "babelify": "^9.0.0",
+        "browser-sync": "^2.0.0",
+        "browserify": "^16.0.0",
+        "chai": "^4.0.0",
+        "gulp": "^3.0.0",
+        "gulp-autoprefixer": "^5.0.0",
+        "gulp-clean-css": "^3.0.0",
+        "gulp-concat": "^2.0.0",
+        "gulp-duration": "0.0.0",
+        "gulp-plumber": "^1.0.0",
+        "gulp-rename": "^1.0.0",
+        "gulp-sass": "^4.0.0",
+        "gulp-sourcemaps": "^2.0.0",
+        "gulp-uglify": "^3.0.0",
+        "husky": "^2.0.0",
+        "jsdom": "^15.0.0",
+        "mocha": "^6.0.0",
+        "nodelist-to-array": "^2.0.0",
+        "react": "^16.0.0",
+        "react-dom": "^16.0.0",
+        "vinyl-buffer": "^1.0.0",
+        "vinyl-source-stream": "^2.0.0",
+        "watchify": "^3.0.0"
+    },
+    "babel": {
+        "presets": [
+            "@babel/env",
+            "@babel/preset-react"
+        ]
+    },
+    "browserify": {
+        "transform": [
+            [
+                "babelify",
+                {
+                    "presets": [
+                        "@babel/env",
+                        "@babel/preset-react"
+                    ]
+                }
+            ]
+        ]
+    },
+    "dependencies": {}
 }
